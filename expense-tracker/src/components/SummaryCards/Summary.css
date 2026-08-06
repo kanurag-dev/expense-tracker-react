@@ -1,0 +1,19 @@
+.card-container{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    border-radius: 5px;
+
+}
+.title{
+    font-size:0.9rem;
+    color:gray;
+}
+
+.amount-value{
+    font-size:1.5rem;
+    font-weight:bold;
+}
