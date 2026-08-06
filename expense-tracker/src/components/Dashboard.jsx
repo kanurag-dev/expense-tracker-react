@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Summary from './SummaryCards/Summary'
 import './Dashboard.css'
 import SearchBar from './SearchBar/SearchBar'
@@ -9,25 +9,43 @@ import ExpenseModal from './AddExpenseModal/ExpenseModal'
 const Dashboard = () => {
   const[budget,setBudget]=useState(0)
   const [IsModal,setIsModal]=useState(false)
-  const expenses=[{id:1,name:"pizza",category:"food",amount:100,date:"6aug"},
-    {id:2,name:"car",category:"travel",amount:105,date:"4aug"},
-    {id:3,name:"pizza",category:"food",amount:1060,date:"7aug"},
-    {id:4,name:"salon",category:"hair",amount:10,date:"2aug"},
-  ]
+  const [expenses,setExpenses]=useState([])
+
+  function remainingfunc(){
+    
+    const total = expenses.reduce((acc,curr)=>{
+      return acc+curr.amount;
+    },0)
+    const remainingAmount=budget-total;
+    return remainingAmount;
+  }
+  function spentfunc(){
+    
+    const spent = expenses.reduce((acc,curr)=>{
+      return acc+curr.amount;
+    },0)
+    return spent;
+  }
+   function transactionsno(){
+    
+    const size = Object.keys(expenses).length;
+    return size;
+  }
+  
   return (
     <div className='dashboard-container'>
       <div className="summary-container">
         <Summary title="Budget" value={budget} setBudget={setBudget} editable={true} />
-        <Summary title="Remaining" value={4000} />
-        <Summary title="Spent" value={4000} />
-        <Summary title="Transactions" value={4000} />
+        <Summary title="Remaining" value={remainingfunc()} />
+        <Summary title="Spent" value={spentfunc()} />
+        <Summary title="Transactions" value={transactionsno()} />
       </div>
       <div className="toolbar">
         <SearchBar/>
         <button onClick={()=>{setIsModal(true)}}>Add+</button>
 
       </div>
-      {IsModal?<ExpenseModal onClose={()=>setIsModal(false)}/>:null}
+      {IsModal?<ExpenseModal setExpenses={setExpenses} onClose={()=>setIsModal(false) }/>:null}
       
       <div className="expense-rows">
         
