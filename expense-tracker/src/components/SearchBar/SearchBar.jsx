@@ -3,10 +3,14 @@ import React from 'react'
 import './SearchBar.css'
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  function handleInput(e){
+    props.setSearch(e.target.value)
+    
+  }
   return (
     <div className='search-container'>
-        <input className='search-input' type="text" placeholder='search'/>
+        <input onChange={handleInput} className='search-input' type="text" placeholder='search'/>
         
         
     </div>

@@ -1,0 +1,9 @@
+.header{
+    font-size: 32px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    padding: 12px;
+    background-color: rgb(158, 200, 185);
+    color: rgb(9, 38, 53);
+}

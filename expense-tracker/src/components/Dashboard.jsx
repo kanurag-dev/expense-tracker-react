@@ -7,51 +7,50 @@ import ExpenseModal from './AddExpenseModal/ExpenseModal'
 
 
 const Dashboard = () => {
-  const[budget,setBudget]=useState(0)
-  const [IsModal,setIsModal]=useState(false)
-  const [expenses,setExpenses]=useState([])
+  const [budget, setBudget] = useState(0)
+  const [IsModal, setIsModal] = useState(false)
+  const [expenses, setExpenses] = useState([])
+  const [search,setSearch]=useState("");
+  const spent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
+  const remaining = budget - spent;
 
-  function remainingfunc(){
-    
-    const total = expenses.reduce((acc,curr)=>{
-      return acc+curr.amount;
-    },0)
-    const remainingAmount=budget-total;
-    return remainingAmount;
-  }
-  function spentfunc(){
-    
-    const spent = expenses.reduce((acc,curr)=>{
-      return acc+curr.amount;
-    },0)
-    return spent;
-  }
-   function transactionsno(){
-    
-    const size = Object.keys(expenses).length;
+  const filteredTransactions=expenses.filter((elem)=>{
+    const searchMatch=elem.name.toLowerCase().includes(search.toLowerCase())
+    return searchMatch;
+  })
+
+
+  function transactionsno() {
+
+    const size = expenses.length;
     return size;
   }
-  
+  function handleDelete(id){
+    setExpenses(prev=>prev.filter(expense=>expense.id!==id))
+  }
+  console.log(search)
+
   return (
     <div className='dashboard-container'>
       <div className="summary-container">
         <Summary title="Budget" value={budget} setBudget={setBudget} editable={true} />
-        <Summary title="Remaining" value={remainingfunc()} />
-        <Summary title="Spent" value={spentfunc()} />
+        <Summary title="Remaining" value={remaining} />
+        <Summary title="Spent" value={spent} />
         <Summary title="Transactions" value={transactionsno()} />
       </div>
       <div className="toolbar">
-        <SearchBar/>
-        <button onClick={()=>{setIsModal(true)}}>Add+</button>
+        <SearchBar setSearch={setSearch}/>
+        <button onClick={() => { setIsModal(true) }}>Add+</button>
 
       </div>
-      {IsModal?<ExpenseModal setExpenses={setExpenses} onClose={()=>setIsModal(false) }/>:null}
-      
+      {IsModal ? <ExpenseModal setExpenses={setExpenses} onClose={() => setIsModal(false)} /> : null}
+
       <div className="expense-rows">
         
-      {expenses.map((expense)=>(
-        <ExpenseRow expense={expense} key={expense.id}/>
-      ))}
+
+        {filteredTransactions.map((expense) => (
+          <ExpenseRow expense={expense} key={expense.id} ondelete={handleDelete} />
+        ))}
       </div>
     </div>
   )

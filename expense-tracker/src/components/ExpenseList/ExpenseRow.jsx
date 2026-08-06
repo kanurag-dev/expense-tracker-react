@@ -1,15 +1,16 @@
 import React from 'react'
 import './ExpenseRow.css'
 
-const ExpenseRow = ({expense}) => {
+const ExpenseRow = ({expense,ondelete}) => {
   return (
-    <ul className='expense-row'>
-        <li>{expense.name}</li>
-        <li>{expense.category}</li>
-        <li>{expense.amount}</li>
-        <li>{expense.date}</li>
+    <div className='expense-row'>
+        <p>{expense.name}</p>
+        <p>{expense.category}</p>
+        <p>{expense.amount}</p>
+        <p>{expense.date}</p>
+        <button onClick={()=>ondelete(expense.id)}>delete</button>
         
-    </ul>
+    </div>
   )
 }
 

@@ -1,5 +1,77 @@
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#222831;
+
+    color:#EEEEEE;
+
+    min-height:100vh;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-rendering:optimizeLegibility;
+}
+
+button{
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+input{
+
+    font-family:inherit;
+
+    transition:.2s ease;
+}
+
+button,
+input{
+
+    outline:none;
+}
+
+::selection{
+
+    background:#00ADB5;
+
+    color:#fff;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#222831;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#393E46;
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#00ADB5;
 }
