@@ -14,7 +14,7 @@ const Summary = (props) => {
   if (!props.editable) {
     return (
       <div className='card-container'>
-        <label className='title'>{props.title}</label>
+        <h3 className='title'>{props.title}</h3>
         <p className='amount-value'>{props.value}</p>
       </div>
     )
@@ -22,7 +22,7 @@ const Summary = (props) => {
   return (
     editing ?
       (<div className='card-container' >
-        <label className='title'>{props.title}</label>
+        <h3 className='title'>{props.title}</h3>
         <input type="number" value={props.value} onChange={inputChangeHandler} onBlur={()=>setEditing(false)} 
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -32,7 +32,7 @@ const Summary = (props) => {
         } />
       </div>) :
       (<div className='card-container' onClick={edit}>
-        <label className='title'>{props.title}</label>
+        <h3 className='title'>{props.title}</h3>
         <p className='amount-value'>{props.value}</p>
       </div>)
   )

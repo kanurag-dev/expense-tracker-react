@@ -1,4 +1,5 @@
 .modal-overlay{
+
     position:fixed;
     inset:0;
 
@@ -6,29 +7,34 @@
     justify-content:center;
     align-items:center;
 
-    background:rgba(0,0,0,0.35);
-    backdrop-filter:blur(8px);
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(10px);
 
     z-index:1000;
 }
 
+/* ======================= */
+
 .expense-container{
-    width:420px;
-    max-width:90%;
 
-    background:#ffffff;
+    width:430px;
+    max-width:92%;
 
-    border-radius:18px;
+    background:#393E46;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:16px;
 
     padding:2rem;
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,0.18);
 
     display:flex;
     flex-direction:column;
 
     gap:1.5rem;
+
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
 
     animation:popup .25s ease;
 }
@@ -36,30 +42,39 @@
 @keyframes popup{
 
     from{
+
         opacity:0;
+
         transform:translateY(-20px) scale(.95);
     }
 
     to{
+
         opacity:1;
+
         transform:translateY(0) scale(1);
     }
 }
 
+/* ======================= */
+
 .expense-container h2{
+
+    color:#EEEEEE;
 
     text-align:center;
 
     font-size:1.5rem;
 
     font-weight:700;
-
-    color:#222;
 }
+
+/* ======================= */
 
 .transaction-info{
 
     display:flex;
+
     flex-direction:column;
 
     gap:1rem;
@@ -68,38 +83,52 @@
 .transaction-info label{
 
     display:flex;
+
     flex-direction:column;
 
     gap:.45rem;
 
+    color:rgba(238,238,238,.75);
+
     font-size:.9rem;
-
-    color:#666;
-
-    font-weight:500;
 }
+
+/* ======================= */
 
 .transaction-info input{
 
-    padding:.85rem 1rem;
+    width:100%;
 
-    border:1px solid #d8d8d8;
+    background:#222831;
+
+    color:#EEEEEE;
+
+    border:1px solid transparent;
 
     border-radius:10px;
 
-    font-size:1rem;
+    padding:.9rem 1rem;
 
-    transition:.25s;
+    font-size:.95rem;
+
+    transition:.2s;
+}
+
+.transaction-info input::placeholder{
+
+    color:rgba(238,238,238,.35);
 }
 
 .transaction-info input:focus{
 
     outline:none;
 
-    border-color:#2563eb;
+    border-color:#00ADB5;
 
-    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+    box-shadow:0 0 0 4px rgba(0,173,181,.15);
 }
+
+/* ======================= */
 
 .save-cancel{
 
@@ -107,50 +136,60 @@
 
     justify-content:flex-end;
 
-    gap:1rem;
-
-    margin-top:.5rem;
+    gap:.8rem;
 }
 
 .save-cancel button{
 
     border:none;
 
-    padding:.8rem 1.4rem;
-
     border-radius:10px;
 
-    font-size:.95rem;
+    padding:.85rem 1.3rem;
+
+    font-size:.9rem;
 
     font-weight:600;
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:.2s;
 }
+
+/* Save */
 
 .save-cancel button:first-child{
 
-    background:#2563eb;
+    background:#00ADB5;
 
-    color:white;
+    color:#EEEEEE;
 }
 
 .save-cancel button:first-child:hover{
 
-    background:#1d4ed8;
+    background:#00c3cb;
 
     transform:translateY(-2px);
 }
 
+/* Cancel */
+
 .save-cancel button:last-child{
 
-    background:#ececec;
+    background:#222831;
 
-    color:#444;
+    color:#EEEEEE;
 }
 
 .save-cancel button:last-child:hover{
 
-    background:#dcdcdc;
+    background:#1a2027;
+}
+.save-cancel button:disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+    transform:none;
 }

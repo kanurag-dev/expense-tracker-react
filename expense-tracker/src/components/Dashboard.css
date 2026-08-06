@@ -1,9 +1,133 @@
 .dashboard-container{
-    padding: 2rem;
-    background-color: rgb(92, 131, 116);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2rem;
+
+    padding:0;
 }
 
+/* ========================= */
+
 .summary-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:1.25rem;
+}
+
+/* ========================= */
+
+.toolbar{
+
     display:flex;
-    gap:20px;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:1rem;
+}
+
+/* ========================= */
+
+.toolbar button{
+
+    background:#00ADB5;
+
+    color:#EEEEEE;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:.8rem 1.4rem;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+    transition:.2s ease;
+}
+
+.toolbar button:hover{
+
+    background:#00c2cb;
+
+    transform:translateY(-2px);
+}
+
+/* ========================= */
+
+.expense-rows{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.8rem;
+
+    margin-top:.5rem;
+}
+
+/* ========================= */
+
+@media(max-width:900px){
+
+    .summary-container{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .summary-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .toolbar button{
+
+        width:100%;
+    }
+}
+
+.toolbar button{
+
+    background:#00ADB5;
+
+    color:#EEEEEE;
+
+    border:none;
+
+    padding:.8rem 1.4rem;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.toolbar button:hover{
+
+    background:#00c3cb;
+
+    transform:translateY(-2px);
 }

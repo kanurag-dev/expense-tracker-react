@@ -1,4 +1,132 @@
 .expense-row{
-    display: flex;
-    gap: 20px;
+
+    background:#393E46;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:12px;
+
+    padding:1rem 1.25rem;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 120px 90px;
+
+    align-items:center;
+
+    gap:1rem;
+
+    transition:.2s ease;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.expense-row:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#00ADB5;
+
+    box-shadow:0 14px 28px rgba(0,0,0,.2);
+}
+
+/* ------------------------- */
+
+.expense-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.25rem;
+}
+
+.expense-info h4{
+
+    color:#EEEEEE;
+
+    font-size:1rem;
+
+    font-weight:600;
+}
+
+.expense-info p{
+
+    color:rgba(238,238,238,.6);
+
+    font-size:.85rem;
+}
+
+/* ------------------------- */
+
+.expense-date{
+
+    color:rgba(238,238,238,.65);
+
+    text-align:center;
+
+    font-size:.9rem;
+}
+
+/* ------------------------- */
+
+.expense-amount{
+
+    color:#00ADB5;
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+    text-align:right;
+}
+
+/* ------------------------- */
+
+.delete-btn{
+
+    background:transparent;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#ff6b6b;
+
+    padding:.65rem .9rem;
+
+    border-radius:8px;
+
+    transition:.2s ease;
+}
+
+.delete-btn:hover{
+
+    background:#ff6b6b;
+
+    color:white;
+
+    border-color:#ff6b6b;
+}
+
+/* ------------------------- */
+
+@media(max-width:700px){
+
+    .expense-row{
+
+        grid-template-columns:1fr;
+
+        text-align:left;
+    }
+
+    .expense-date,
+
+    .expense-amount{
+
+        text-align:left;
+    }
+
+    .delete-btn{
+
+        width:100%;
+    }
 }

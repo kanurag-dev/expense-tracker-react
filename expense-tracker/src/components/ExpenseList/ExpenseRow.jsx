@@ -1,15 +1,30 @@
 import React from 'react'
 import './ExpenseRow.css'
 
-const ExpenseRow = ({expense,ondelete}) => {
+const ExpenseRow = ({ expense, ondelete }) => {
   return (
-    <div className='expense-row'>
-        <p>{expense.name}</p>
+    <div className="expense-row">
+
+      <div className="expense-info">
+        <h4>{expense.name}</h4>
         <p>{expense.category}</p>
-        <p>{expense.amount}</p>
-        <p>{expense.date}</p>
-        <button onClick={()=>ondelete(expense.id)}>delete</button>
-        
+      </div>
+
+      <div className="expense-date">
+        {expense.date}
+      </div>
+
+      <div className="expense-amount">
+        ₹{expense.amount}
+      </div>
+
+      <button
+        className="delete-btn"
+        onClick={() => ondelete(expense.id)}
+      >
+        Delete
+      </button>
+
     </div>
   )
 }

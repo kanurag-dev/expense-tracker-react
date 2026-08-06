@@ -1,9 +1,31 @@
 .header{
-    font-size: 32px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    padding: 12px;
-    background-color: rgb(158, 200, 185);
-    color: rgb(9, 38, 53);
+
+    height:72px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 2rem;
+
+    margin-bottom:2rem;
+
+    background:#393E46;
+
+    border-radius:14px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.header h1{
+
+    font-size:1.45rem;
+
+    font-weight:700;
+
+    color:#EEEEEE;
+
+    letter-spacing:.4px;
 }

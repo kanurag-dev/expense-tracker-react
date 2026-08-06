@@ -1,19 +1,81 @@
 .card-container{
-    border: 2px solid red;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    border-radius: 5px;
 
+    background:#393E46;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:12px;
+
+    min-height:130px;
+
+    padding:1.4rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:.6rem;
+
+    transition:.2s ease;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
+
+.card-container:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#00ADB5;
+
+    box-shadow:0 16px 35px rgba(0,0,0,.25);
+}
+
 .title{
-    font-size:0.9rem;
-    color:gray;
+
+    color:rgba(238,238,238,.6);
+
+    font-size:.9rem;
+
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
 }
 
 .amount-value{
-    font-size:1.5rem;
-    font-weight:bold;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:#EEEEEE;
+}
+
+.card-container input{
+
+    width:100%;
+
+    background:#222831;
+
+    color:#EEEEEE;
+
+    border:1px solid transparent;
+
+    border-radius:8px;
+
+    padding:.75rem .9rem;
+
+    font-size:1.4rem;
+
+    font-weight:600;
+}
+
+.card-container input:focus{
+
+    border-color:#00ADB5;
+
+    box-shadow:0 0 0 4px rgba(0,173,181,.15);
 }

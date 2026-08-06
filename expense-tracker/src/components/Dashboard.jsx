@@ -40,7 +40,7 @@ const Dashboard = () => {
       </div>
       <div className="toolbar">
         <SearchBar setSearch={setSearch}/>
-        <button onClick={() => { setIsModal(true) }}>Add+</button>
+        <button onClick={() => { setIsModal(true) }}>+Add Expense</button>
 
       </div>
       {IsModal ? <ExpenseModal setExpenses={setExpenses} onClose={() => setIsModal(false)} /> : null}

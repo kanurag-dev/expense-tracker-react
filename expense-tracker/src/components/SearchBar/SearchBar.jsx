@@ -10,7 +10,11 @@ const SearchBar = (props) => {
   }
   return (
     <div className='search-container'>
-        <input onChange={handleInput} className='search-input' type="text" placeholder='search'/>
+        <input 
+        onChange={handleInput} 
+        className='search-input' 
+        type="text" 
+        placeholder="🔍 Search transactions..."/>
         
         
     </div>

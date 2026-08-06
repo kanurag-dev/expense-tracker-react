@@ -3,10 +3,10 @@ import './Header.css'
 
 const Header = () => {
   return (
-    <div className='header'>
-        <h4>Expense Tracker</h4>
-    </div>
+    <header className="header">
+      <h1>Expense Tracker</h1>
+    </header>
   )
 }
 
-export default Header       
+export default Header
