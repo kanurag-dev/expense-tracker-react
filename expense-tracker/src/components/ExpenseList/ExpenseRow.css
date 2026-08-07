@@ -1,5 +1,4 @@
 .expense-row{
-
     background:#393E46;
 
     border:1px solid rgba(255,255,255,.05);
@@ -10,7 +9,7 @@
 
     display:grid;
 
-    grid-template-columns:2fr 1fr 120px 90px;
+    grid-template-columns:2fr 1fr 120px 90px 90px;
 
     align-items:center;
 
@@ -83,19 +82,29 @@
 
 /* ------------------------- */
 
-.delete-btn{
+.delete-btn,
+.edit-btn{
 
     background:transparent;
 
     border:1px solid rgba(255,255,255,.08);
 
-    color:#ff6b6b;
-
     padding:.65rem .9rem;
 
     border-radius:8px;
 
+    font-weight:600;
+
+    cursor:pointer;
+
     transition:.2s ease;
+}
+
+/* Delete */
+
+.delete-btn{
+
+    color:#ff6b6b;
 }
 
 .delete-btn:hover{
@@ -107,6 +116,22 @@
     border-color:#ff6b6b;
 }
 
+/* Edit */
+
+.edit-btn{
+
+    color:#00ADB5;
+}
+
+.edit-btn:hover{
+
+    background:#00ADB5;
+
+    color:#EEEEEE;
+
+    border-color:#00ADB5;
+}
+
 /* ------------------------- */
 
 @media(max-width:700px){
@@ -114,8 +139,6 @@
     .expense-row{
 
         grid-template-columns:1fr;
-
-        text-align:left;
     }
 
     .expense-date,
@@ -125,7 +148,9 @@
         text-align:left;
     }
 
-    .delete-btn{
+    .delete-btn,
+
+    .edit-btn{
 
         width:100%;
     }

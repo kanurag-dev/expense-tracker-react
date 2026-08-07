@@ -2,20 +2,22 @@ import React, { useEffect, useState } from 'react'
 import './ExpenseModal.css'
 
 const ExpenseModal = (props) => {
-
-  const [newExpense, setNewExpense] = useState({
+  const emptyExpense = {
     name: "",
     category: "",
     amount: "",
     date: ""
-  })
+  };
+
+  const [newExpense, setNewExpense] = useState(emptyExpense)
   useEffect(() => {
     if (props.editingExpense) {
-      setNewExpense(props.editingExpense)
+      setNewExpense(props.editingExpense);
+    } else {
+      setNewExpense(emptyExpense);
     }
+  }, [props.editingExpense]);
 
-
-  }, [props.editingExpense])
   const disabled = !newExpense.name ||
     !newExpense.category ||
     !newExpense.amount ||
@@ -24,17 +26,23 @@ const ExpenseModal = (props) => {
   function onSaveHandle(e) {
     if (props.editingExpense) {
       props.setExpenses(prev => prev.map((elem) => {
-        if (elem.id == newExpense.id) {
-          return newExpense;
+        if (elem.id === newExpense.id) {
+          return {
+            ...newExpense,
+            amount: Number(newExpense.amount),
+          };
         }
-        else{
+        else {
           return elem;
         }
       }))
+      props.setEditingExpense(null)
+      setNewExpense(emptyExpense);
       props.onClose();
     }
     else {
       props.setExpenses(prev => [...prev, { ...newExpense, id: Date.now(), amount: Number(newExpense.amount) }])
+      setNewExpense(emptyExpense);
       props.onClose();
 
     }

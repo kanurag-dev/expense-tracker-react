@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [IsModal, setIsModal] = useState(false)
   const [expenses, setExpenses] = useState([])
   const [search,setSearch]=useState("");
+  console.log(expenses);
   const spent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
   const remaining = budget - spent;
   const [editingExpense, setEditingExpense] = useState(null);
@@ -46,7 +47,7 @@ const Dashboard = () => {
       </div>
       <div className="toolbar">
         <SearchBar setSearch={setSearch}/>
-        <button onClick={() => { setIsModal(true) }}>+Add Expense</button>
+        <button onClick={() => {setEditingExpense(null); setIsModal(true); }}>+Add Expense</button>
 
       </div>
 
