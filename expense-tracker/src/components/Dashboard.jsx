@@ -13,11 +13,17 @@ const Dashboard = () => {
   const [search,setSearch]=useState("");
   const spent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
   const remaining = budget - spent;
+  const [editingExpense, setEditingExpense] = useState(null);
 
   const filteredTransactions=expenses.filter((elem)=>{
     const searchMatch=elem.name.toLowerCase().includes(search.toLowerCase())
     return searchMatch;
   })
+  function handleEdit(editexp){
+    setEditingExpense(editexp)
+  
+    setIsModal(true)
+  }
 
 
   function transactionsno() {
@@ -28,7 +34,7 @@ const Dashboard = () => {
   function handleDelete(id){
     setExpenses(prev=>prev.filter(expense=>expense.id!==id))
   }
-  console.log(search)
+
 
   return (
     <div className='dashboard-container'>
@@ -43,13 +49,16 @@ const Dashboard = () => {
         <button onClick={() => { setIsModal(true) }}>+Add Expense</button>
 
       </div>
-      {IsModal ? <ExpenseModal setExpenses={setExpenses} onClose={() => setIsModal(false)} /> : null}
+
+
+
+      {IsModal ? <ExpenseModal setExpenses={setExpenses} editingExpense={editingExpense} setEditingExpense={setEditingExpense} onClose={() => setIsModal(false)} /> : null}
 
       <div className="expense-rows">
         
 
         {filteredTransactions.map((expense) => (
-          <ExpenseRow expense={expense} key={expense.id} ondelete={handleDelete} />
+          <ExpenseRow expense={expense} key={expense.id} ondelete={handleDelete} onedit={handleEdit} />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './ExpenseRow.css'
 
-const ExpenseRow = ({ expense, ondelete }) => {
+const ExpenseRow = ({ expense, ondelete,onedit }) => {
   return (
     <div className="expense-row">
 
@@ -24,6 +24,10 @@ const ExpenseRow = ({ expense, ondelete }) => {
       >
         Delete
       </button>
+      <button
+        className="edit-btn"
+        onClick={() => onedit(expense)}
+      >Edit</button>
 
     </div>
   )

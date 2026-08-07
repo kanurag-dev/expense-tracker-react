@@ -1,21 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ExpenseModal.css'
 
 const ExpenseModal = (props) => {
+
   const [newExpense, setNewExpense] = useState({
     name: "",
     category: "",
     amount: "",
     date: ""
   })
-  const disabled=!newExpense.name||
+  useEffect(() => {
+    if (props.editingExpense) {
+      setNewExpense(props.editingExpense)
+    }
+
+
+  }, [props.editingExpense])
+  const disabled = !newExpense.name ||
     !newExpense.category ||
     !newExpense.amount ||
     !newExpense.date;
 
-  function onSaveHandle() {
-    props.setExpenses(prev => [...prev, { ...newExpense, id: Date.now(), amount: Number(newExpense.amount) }])
-    props.onClose();
+  function onSaveHandle(e) {
+    if (props.editingExpense) {
+      props.setExpenses(prev => prev.map((elem) => {
+        if (elem.id == newExpense.id) {
+          return newExpense;
+        }
+        else{
+          return elem;
+        }
+      }))
+      props.onClose();
+    }
+    else {
+      props.setExpenses(prev => [...prev, { ...newExpense, id: Date.now(), amount: Number(newExpense.amount) }])
+      props.onClose();
+
+    }
   }
   function inputHandler(e) {
     setNewExpense({
