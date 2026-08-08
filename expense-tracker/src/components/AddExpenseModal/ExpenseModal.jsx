@@ -26,7 +26,7 @@ const ExpenseModal = (props) => {
   async function onSaveHandle(e) {
     if (props.editingExpense) {
       try {
-        const res = await fetch(`http://localhost:3000/api/expenses/${newExpense._id}`, {
+        const res = await fetch(`https://expense-tracker-25yd.onrender.com/api/expenses/${props.editingExpense._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -52,7 +52,7 @@ const ExpenseModal = (props) => {
     }
     else {
       try {
-        const res = await fetch("http://localhost:3000/api/expenses", {
+        const res = await fetch("https://expense-tracker-25yd.onrender.com/api/expenses", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

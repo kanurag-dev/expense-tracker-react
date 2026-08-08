@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getExpenses = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/expenses");
+        const res = await fetch("https://expense-tracker-25yd.onrender.com/api/expenses");
         const data = await res.json();
         setExpenses(data);
       }
@@ -48,7 +48,7 @@ const Dashboard = () => {
     return size;
   }
   async function handleDelete(id) {
-    const res = await fetch(`http://localhost:3000/api/expenses/${id}`, {
+    const res = await fetch(`https://expense-tracker-25yd.onrender.com/api/expenses/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
