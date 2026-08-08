@@ -20,7 +20,7 @@ const ExpenseRow = ({ expense, ondelete,onedit }) => {
 
       <button
         className="delete-btn"
-        onClick={() => ondelete(expense.id)}
+        onClick={() => ondelete(expense._id)}
       >
         Delete
       </button>

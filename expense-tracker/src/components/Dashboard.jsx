@@ -10,19 +10,34 @@ const Dashboard = () => {
   const [budget, setBudget] = useState(0)
   const [IsModal, setIsModal] = useState(false)
   const [expenses, setExpenses] = useState([])
-  const [search,setSearch]=useState("");
+  const [search, setSearch] = useState("");
   console.log(expenses);
   const spent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
   const remaining = budget - spent;
   const [editingExpense, setEditingExpense] = useState(null);
 
-  const filteredTransactions=expenses.filter((elem)=>{
-    const searchMatch=elem.name.toLowerCase().includes(search.toLowerCase())
+  useEffect(() => {
+    const getExpenses = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/expenses");
+        const data = await res.json();
+        setExpenses(data);
+      }
+      catch (err) {
+        console.log(err)
+      }
+    }
+    getExpenses();
+  }, [])
+
+
+  const filteredTransactions = expenses.filter((elem) => {
+    const searchMatch = elem.name.toLowerCase().includes(search.toLowerCase())
     return searchMatch;
   })
-  function handleEdit(editexp){
+  function handleEdit(editexp) {
     setEditingExpense(editexp)
-  
+
     setIsModal(true)
   }
 
@@ -32,8 +47,21 @@ const Dashboard = () => {
     const size = expenses.length;
     return size;
   }
-  function handleDelete(id){
-    setExpenses(prev=>prev.filter(expense=>expense.id!==id))
+  async function handleDelete(id) {
+    const res = await fetch(`http://localhost:3000/api/expenses/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    if (!res.ok){
+      console.log("Delete Failed")
+      return
+    }
+    
+    setExpenses(prev=>prev.filter(expense=>expense._id !==id))
+
+    
   }
 
 
@@ -46,8 +74,8 @@ const Dashboard = () => {
         <Summary title="Transactions" value={transactionsno()} />
       </div>
       <div className="toolbar">
-        <SearchBar setSearch={setSearch}/>
-        <button onClick={() => {setEditingExpense(null); setIsModal(true); }}>+Add Expense</button>
+        <SearchBar setSearch={setSearch} />
+        <button onClick={() => { setEditingExpense(null); setIsModal(true); }}>+Add Expense</button>
 
       </div>
 
@@ -56,10 +84,10 @@ const Dashboard = () => {
       {IsModal ? <ExpenseModal setExpenses={setExpenses} editingExpense={editingExpense} setEditingExpense={setEditingExpense} onClose={() => setIsModal(false)} /> : null}
 
       <div className="expense-rows">
-        
+
 
         {filteredTransactions.map((expense) => (
-          <ExpenseRow expense={expense} key={expense.id} ondelete={handleDelete} onedit={handleEdit} />
+          <ExpenseRow expense={expense} key={expense._id} ondelete={handleDelete} onedit={handleEdit} />
         ))}
       </div>
     </div>

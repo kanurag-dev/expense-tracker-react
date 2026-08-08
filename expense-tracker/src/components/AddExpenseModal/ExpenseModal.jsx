@@ -23,29 +23,53 @@ const ExpenseModal = (props) => {
     !newExpense.amount ||
     !newExpense.date;
 
-  function onSaveHandle(e) {
+  async function onSaveHandle(e) {
     if (props.editingExpense) {
-      props.setExpenses(prev => prev.map((elem) => {
-        if (elem.id === newExpense.id) {
-          return {
-            ...newExpense,
-            amount: Number(newExpense.amount),
-          };
-        }
-        else {
-          return elem;
-        }
-      }))
-      props.setEditingExpense(null)
-      setNewExpense(emptyExpense);
-      props.onClose();
+      try {
+        const res = await fetch(`http://localhost:3000/api/expenses/${newExpense._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newExpense)
+        });
+        const data = await res.json();
+        props.setExpenses(prev => prev.map((elem) => {
+          if (elem._id === data._id) {
+            return data;
+          }
+          else {
+            return elem;
+          }
+        }))
+
+        props.setEditingExpense(null)
+        setNewExpense(emptyExpense);
+        props.onClose();
+      }catch(err){
+        console.log(err)
+      }
     }
     else {
-      props.setExpenses(prev => [...prev, { ...newExpense, id: Date.now(), amount: Number(newExpense.amount) }])
-      setNewExpense(emptyExpense);
+      try {
+        const res = await fetch("http://localhost:3000/api/expenses", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }, body: JSON.stringify(newExpense)
+        });
+        const data = await res.json();
+        props.setExpenses(prev => [...prev, data])
+      } catch (err) {
+        console.log(err)
+      }
       props.onClose();
 
     }
+
+
+
+
   }
   function inputHandler(e) {
     setNewExpense({
